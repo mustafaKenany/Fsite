@@ -13,16 +13,13 @@ class validatecontroller extends Controller
 
     public function validsubmit(Request $req)
     {
-        $msgs = [
-            'required'=>'Forget field'
-        ];
         $this->validate($req,
         [
             'UserName'=>'required',
-            'Password'=>'required',
+            'Passwrod'=>'required',
             'email'=>'required|email',
             'image'=>'nullable|image'
-        ],$msgs);
+        ]);
 
         if($req->hasFile('image'))
         {
@@ -31,7 +28,12 @@ class validatecontroller extends Controller
             $imgName = $fileObj->getClientOriginalName();
             $imgSize = $fileObj->getClientSize();
             $path = $fileObj->store('mustafa');
+            return $path;
         }
-        return $path;
+        else
+        {
+            return $req->all();
+        }
+        
     }
 }
