@@ -15,9 +15,8 @@ Route::get('/', function () {
     return view('layout.bs');
 });
 
-// Route::get('/about', function () {
-//     return view('pages.about');
-// });
+Route::resource('/comments','CommentController');
+
 Route::get('/get','RequestController@ViewRequest');
 Route::get('/signin','validatecontroller@showForm');
 Route::post('/signin','validatecontroller@validsubmit')->name('reg');
